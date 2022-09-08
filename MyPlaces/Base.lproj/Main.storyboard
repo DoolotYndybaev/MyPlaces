@@ -115,15 +115,15 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo" translatesAutoresizingMaskIntoConstraints="NO" id="3gT-ID-A9x">
-                                                    <rect key="frame" x="20" y="11" width="374" height="228"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="3gT-ID-A9x" firstAttribute="bottom" secondItem="ty3-Aa-yv1" secondAttribute="bottomMargin" id="L74-vI-IKD"/>
-                                                <constraint firstItem="3gT-ID-A9x" firstAttribute="leading" secondItem="ty3-Aa-yv1" secondAttribute="leadingMargin" id="ryU-jn-lRo"/>
-                                                <constraint firstItem="3gT-ID-A9x" firstAttribute="top" secondItem="ty3-Aa-yv1" secondAttribute="topMargin" id="w8F-yV-G9Q"/>
-                                                <constraint firstItem="3gT-ID-A9x" firstAttribute="trailing" secondItem="ty3-Aa-yv1" secondAttribute="trailingMargin" id="wuT-Mn-kpJ"/>
+                                                <constraint firstItem="3gT-ID-A9x" firstAttribute="bottom" secondItem="ty3-Aa-yv1" secondAttribute="bottomMargin" constant="11" id="L74-vI-IKD"/>
+                                                <constraint firstItem="3gT-ID-A9x" firstAttribute="leading" secondItem="ty3-Aa-yv1" secondAttribute="leadingMargin" constant="-20" id="ryU-jn-lRo"/>
+                                                <constraint firstItem="3gT-ID-A9x" firstAttribute="top" secondItem="ty3-Aa-yv1" secondAttribute="topMargin" constant="-11" id="w8F-yV-G9Q"/>
+                                                <constraint firstItem="3gT-ID-A9x" firstAttribute="trailing" secondItem="ty3-Aa-yv1" secondAttribute="trailingMargin" constant="20" id="wuT-Mn-kpJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -243,11 +243,22 @@
                     <navigationItem key="navigationItem" title="New Place" id="RRH-Nd-0oP">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="IE1-6A-yAT">
                             <connections>
-                                <segue destination="bT5-OY-SPz" kind="unwind" unwindAction="cancelAction:" id="yzh-lG-3Tr"/>
+                                <action selector="cancelAction:" destination="LHa-bn-kYy" id="zy1-Km-nV1"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="noi-kF-iLT"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="noi-kF-iLT">
+                            <connections>
+                                <segue destination="bT5-OY-SPz" kind="unwind" unwindAction="unwindSegue:" id="q0d-Hl-1qr"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="placeImage" destination="3gT-ID-A9x" id="Pdn-pn-kRw"/>
+                        <outlet property="placeLocation" destination="bi0-lF-iRj" id="8Oe-vO-lcC"/>
+                        <outlet property="placeName" destination="JyJ-xu-JoH" id="r7E-er-B5J"/>
+                        <outlet property="placeType" destination="dT3-37-sZ0" id="ham-cz-VFI"/>
+                        <outlet property="saveButton" destination="noi-kF-iLT" id="WKI-OQ-70g"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U9R-Z1-o8J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="bT5-OY-SPz" userLabel="Exit" sceneMemberID="exit"/>

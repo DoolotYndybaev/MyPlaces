@@ -9,7 +9,6 @@ import UIKit
 
 class NewPlaceTableViewController: UITableViewController {
     
-    var newPlace: Place?
     
     var imageIsChanged = false
     
@@ -62,6 +61,7 @@ class NewPlaceTableViewController: UITableViewController {
     }
     
     func saveNewPlaces() {
+    
         var image: UIImage?
         
         if imageIsChanged {
@@ -69,11 +69,15 @@ class NewPlaceTableViewController: UITableViewController {
         } else {
             image = UIImage(named: "imagePlaceholder")
         }
-        newPlace = Place(name: placeName.text!,
-                         location: placeLocation.text,
-                         type: placeType.text,
-                         image: image,
-                         restaurantImage: nil)
+        
+        let imageData = image?.pngData()
+        
+        let newPlace = Place(name: placeName.text!,
+                             location: placeLocation.text!,
+                             type: placeType.text!,
+                             imageData: imageData)
+        
+        StorageManager.saveObject(newPlace)
     }
     @IBAction func cancelAction(_ sender: Any) {
         dismiss(animated: true)

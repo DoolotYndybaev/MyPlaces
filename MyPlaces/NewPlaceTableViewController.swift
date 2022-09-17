@@ -43,7 +43,7 @@ class NewPlaceTableViewController: UITableViewController {
                                                 preferredStyle: .actionSheet)
             let camera = UIAlertAction(title: "Camera", style: .default) { _ in
                 // TO DO chooseImagePicker
-            self.chooseImagePicker(source: .camera)
+                self.chooseImagePicker(source: .camera)
             }
             camera.setValue(cameraICon, forKey: "image")
             camera.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
@@ -55,7 +55,7 @@ class NewPlaceTableViewController: UITableViewController {
             }
             photo.setValue(photoIcon, forKey: "image")
             photo.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
-
+            
             
             let cancel = UIAlertAction(title: "Cancel", style: .cancel)
             
@@ -70,7 +70,7 @@ class NewPlaceTableViewController: UITableViewController {
     }
     
     func savePlace() {
-    
+        
         var image: UIImage?
         
         if imageIsChanged {

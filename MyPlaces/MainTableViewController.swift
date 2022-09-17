@@ -8,10 +8,17 @@
 import UIKit
 import RealmSwift
 
-class MainTableViewController: UITableViewController {
+class MainTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    
+    let searchController = UISearchController(searchResultsController: nil)
     var places: Results<Place>!
+    var ascendingSorting = true
+    
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var segmentedControl: UISegmentedControl!
+    @IBOutlet var reversedSortingButton: UIBarButtonItem!
+    
+    
     
     
     override func viewDidLoad() {
@@ -19,20 +26,28 @@ class MainTableViewController: UITableViewController {
         
         places = realm.objects(Place.self)
         
+        // Setup the search controller
+        
+        // Присваивая этому свойстве значение self мы тем самым говорим что получателем информации об изменении текста в поисковой строке должен быть наш класс
+        searchController.searchResultsUpdater = self
+        
+        // По умолчанию вьюконтроллер с результатами поиска не позволяет взаимодействовать с отображаемым контентом. И если присвоит ей значение false то это позволит нам взаимодействовать с этим вьюконтроллером как с основным. 
+        searchController.obscuresBackgroundDuringPresentation = false
+        
     }
     
     // MARK: - Table view data source
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return places.isEmpty ? 0 : places.count
     }
     
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
         
@@ -64,7 +79,7 @@ class MainTableViewController: UITableViewController {
     //        return UISwipeActionsConfiguration(actions: [deleteAction])
     //    }
     // А этот предназначен чтобы отобразить парочку действий
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
             let place = places[indexPath.row]
@@ -75,7 +90,7 @@ class MainTableViewController: UITableViewController {
     
     // MARK: - Table view delegate
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
     }
     
@@ -102,4 +117,39 @@ class MainTableViewController: UITableViewController {
         
     }
     
+    @IBAction func sortSelection(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            places = places.sorted(byKeyPath: "date")
+        } else {
+            places = places.sorted(byKeyPath: "name")
+        }
+        
+        tableView.reloadData()
+    }
+    @IBAction func reversedSorting(_ sender: Any) {
+        
+        ascendingSorting.toggle()
+        
+        if ascendingSorting {
+            reversedSortingButton.image = #imageLiteral(resourceName: "AZ")
+        } else {
+            reversedSortingButton.image = #imageLiteral(resourceName: "ZA")
+        }
+        sorting()
+    }
+    private func sorting() {
+        if segmentedControl.selectedSegmentIndex == 0 {
+            places = places.sorted(byKeyPath: "date", ascending: ascendingSorting)
+        } else {
+            places = places.sorted(byKeyPath: "name", ascending: ascendingSorting)
+        }
+    }
+}
+
+// MARK: UISearchController
+
+extension MainTableViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        <#code#>
+    }
 }

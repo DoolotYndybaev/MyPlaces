@@ -10,9 +10,19 @@ import RealmSwift
 
 class MainTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    let searchController = UISearchController(searchResultsController: nil)
-    var places: Results<Place>!
-    var ascendingSorting = true
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var filteredPlaces: Results<Place>!
+    private var places: Results<Place>!
+    private var ascendingSorting = true
+    
+    private var searchBarIsEmpty: Bool {
+        guard let text = searchController.searchBar.text else { return false }
+        return text.isEmpty
+    }
+    
+    private var isFiltering: Bool {
+        return searchController.isActive && !searchBarIsEmpty
+    }
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var segmentedControl: UISegmentedControl!
@@ -31,8 +41,17 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
         // Присваивая этому свойстве значение self мы тем самым говорим что получателем информации об изменении текста в поисковой строке должен быть наш класс
         searchController.searchResultsUpdater = self
         
-        // По умолчанию вьюконтроллер с результатами поиска не позволяет взаимодействовать с отображаемым контентом. И если присвоит ей значение false то это позволит нам взаимодействовать с этим вьюконтроллером как с основным. 
+        // По умолчанию вьюконтроллер с результатами поиска не позволяет взаимодействовать с отображаемым контентом. И если присвоит ей значение false то это позволит нам взаимодействовать с этим вьюконтроллером как с основным.
         searchController.obscuresBackgroundDuringPresentation = false
+        
+        // Название для нашей строки поиска
+        searchController.searchBar.placeholder = "Search"
+        
+        // Строка поиска будет интегрирована в наш навигейшн бар
+        navigationItem.searchController = searchController
+        
+        //  Позволяет отпустить строку поиска при переходе на другой экран
+        definesPresentationContext = true
         
     }
     
@@ -43,6 +62,9 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering {
+            return filteredPlaces.count
+        }
         return places.isEmpty ? 0 : places.count
     }
     
@@ -51,7 +73,15 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
         
-        let place = places[indexPath.row]
+        var place = Place()
+        
+        if isFiltering {
+            place = filteredPlaces[indexPath.row]
+        } else {
+            place = places[indexPath.row]
+        }
+        
+//        let place = places[indexPath.row]
         
         cell.nameLabel?.text = place.name
         cell.locationLabel.text = place.location
@@ -100,7 +130,12 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            let place = places[indexPath.row]
+            let place: Place
+            if isFiltering {
+                place = filteredPlaces[indexPath.row]
+            } else {
+                place = places[indexPath.row]
+            }
             let newPlaceVC = segue.destination as! NewPlaceTableViewController
             newPlaceVC.currentPlace = place
         }
@@ -146,10 +181,17 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
     }
 }
 
-// MARK: UISearchController
+// MARK: protocol UISearchResultsUpdating
 
 extension MainTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        <#code#>
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    private func filterContentForSearchText(_ searchText: String) {
+        
+        // Сортировка из документации Realm
+        filteredPlaces = places.filter("name CONTAINS[c] %@ OR location CONTAINS[c] %@", searchText, searchText)
+        
+        tableView.reloadData()
     }
 }

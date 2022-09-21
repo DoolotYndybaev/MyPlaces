@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B922BBC128CE4B2500D94DF7 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B922BBC028CE4B2500D94DF7 /* StorageManager.swift */; };
 		B924147328A38764007BD55B /* NewPlaceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B924147228A38764007BD55B /* NewPlaceTableViewController.swift */; };
+		B92DCDB728D9ABD500B2CCF5 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92DCDB628D9ABD500B2CCF5 /* RatingControl.swift */; };
 		B989002728CB96B3000A4187 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B989002628CB96B3000A4187 /* Realm */; };
 		B989002928CB96B3000A4187 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B989002828CB96B3000A4187 /* RealmSwift */; };
 		B9A0BBB128A11DCF00853E87 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A0BBB028A11DCF00853E87 /* MainTableViewController.swift */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		B922BBC028CE4B2500D94DF7 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		B924147228A38764007BD55B /* NewPlaceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceTableViewController.swift; sourceTree = "<group>"; };
+		B92DCDB628D9ABD500B2CCF5 /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		B9A0BBB028A11DCF00853E87 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		B9A0BBB228A1884900853E87 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		B9A0BBB428A250BB00853E87 /* PlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModel.swift; sourceTree = "<group>"; };
@@ -74,8 +76,9 @@
 				B924147228A38764007BD55B /* NewPlaceTableViewController.swift */,
 				B9A0BBB428A250BB00853E87 /* PlaceModel.swift */,
 				B922BBC028CE4B2500D94DF7 /* StorageManager.swift */,
-				B9BEE15528A115C900C72E8E /* Main.storyboard */,
 				B9A0BBB228A1884900853E87 /* CustomTableViewCell.swift */,
+				B92DCDB628D9ABD500B2CCF5 /* RatingControl.swift */,
+				B9BEE15528A115C900C72E8E /* Main.storyboard */,
 				B9BEE15828A115CB00C72E8E /* Assets.xcassets */,
 				B9BEE15A28A115CB00C72E8E /* LaunchScreen.storyboard */,
 				B9BEE15D28A115CB00C72E8E /* Info.plist */,
@@ -165,6 +168,7 @@
 				B9BEE15028A115C900C72E8E /* AppDelegate.swift in Sources */,
 				B9A0BBB128A11DCF00853E87 /* MainTableViewController.swift in Sources */,
 				B922BBC128CE4B2500D94DF7 /* StorageManager.swift in Sources */,
+				B92DCDB728D9ABD500B2CCF5 /* RatingControl.swift in Sources */,
 				B9A0BBB528A250BB00853E87 /* PlaceModel.swift in Sources */,
 				B9A0BBB328A1884900853E87 /* CustomTableViewCell.swift in Sources */,
 				B9BEE15228A115C900C72E8E /* SceneDelegate.swift in Sources */,

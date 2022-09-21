@@ -98,6 +98,10 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
     
     // MARK: TableView Delegate
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     // Метод преднозначен для нескольких UIContextualAction
     //    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     //        let place = places[indexPath.row]

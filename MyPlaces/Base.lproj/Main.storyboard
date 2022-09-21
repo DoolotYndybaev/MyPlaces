@@ -145,6 +145,28 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" focusStyle="custom" rowHeight="140" id="Sop-bR-DUV">
+                                        <rect key="frame" x="0.0" y="519.5" width="414" height="140"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sop-bR-DUV" id="HiG-au-3cy">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="252" placeholderIntrinsicHeight="44" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UbM-se-0nu" customClass="RatingControl" customModule="MyPlaces" customModuleProvider="target">
+                                                    <rect key="frame" x="81" y="48" width="252" height="44"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="starCount">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="UbM-se-0nu" firstAttribute="centerY" secondItem="HiG-au-3cy" secondAttribute="centerY" id="2PE-je-JDb"/>
+                                                <constraint firstItem="UbM-se-0nu" firstAttribute="centerX" secondItem="HiG-au-3cy" secondAttribute="centerX" id="4k7-bV-Vle"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -170,6 +192,7 @@
                         <outlet property="placeLocation" destination="bi0-lF-iRj" id="8Oe-vO-lcC"/>
                         <outlet property="placeName" destination="JyJ-xu-JoH" id="r7E-er-B5J"/>
                         <outlet property="placeType" destination="dT3-37-sZ0" id="ham-cz-VFI"/>
+                        <outlet property="ratingControl" destination="UbM-se-0nu" id="UMs-PH-4jl"/>
                         <outlet property="saveButton" destination="noi-kF-iLT" id="WKI-OQ-70g"/>
                     </connections>
                 </tableViewController>

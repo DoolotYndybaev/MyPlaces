@@ -88,6 +88,7 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
         cell.typeLabel.text = place.type
         
         cell.imageOfPlace.image = UIImage(data: place.imageData!)
+        cell.cosmosView.rating = place.rating
         
         
         cell.imageOfPlace?.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2

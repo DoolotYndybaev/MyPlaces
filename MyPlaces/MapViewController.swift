@@ -8,9 +8,10 @@
 import UIKit
 import MapKit
 
+
 class MapViewController: UIViewController {
     
-    var place: Place!
+    var place = Place()
     let annotetionIdentifier = "annotetionIdentifier"
     
     @IBOutlet var mapView: MKMapView!

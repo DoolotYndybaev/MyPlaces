@@ -21,6 +21,8 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>For direction to your favorite place, also get place adress</string>
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) photo use</string>
 </dict>
